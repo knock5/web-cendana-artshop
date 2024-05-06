@@ -39,7 +39,7 @@
 
   <div class="hero_area">
     <div class="bg-box">
-      <img src="{{asset('user/images/hero-bg.jpg')}}" alt="">
+      <img src="{{asset('user/images/2.png')}}" alt="">
     </div>
     <!-- header section strats -->
     <header class="header_section">
@@ -47,7 +47,7 @@
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="index.html">
             <span>
-              Feane
+             Cendana
             </span>
           </a>
 
@@ -66,9 +66,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="about.html">About</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="book.html">Book Table</a>
-              </li>
+             
             </ul>
             <div class="user_option">
               <a href="" class="user_link">
@@ -128,14 +126,8 @@
                   </g>
                 </svg>
               </a>
-              <form class="form-inline">
-                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </form>
-              <a href="" class="order_online">
-                Order Online
-              </a>
+              
+             
             </div>
           </div>
         </nav>

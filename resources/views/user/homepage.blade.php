@@ -1,7 +1,8 @@
 @extends('user.template.appuser')
 
-@section('title', 'Dashboard - TrackMyShipment')
-
+@section('title', 'Homepage')
+@section('image', asset('user/images/2.png'))
+@section('home', 'active')
 @section('content')
 <section class="slider_section ">
       <div id="customCarousel1" class="carousel slide" data-ride="carousel">
@@ -80,6 +81,6 @@
       </div>
       
 </section>
-   
+
     
 @endsection

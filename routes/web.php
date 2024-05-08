@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\user\HomeController;
+use App\Http\Controllers\user\menuController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +16,7 @@ use App\Http\Controllers\user\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/cart', [menuController::class, 'index']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

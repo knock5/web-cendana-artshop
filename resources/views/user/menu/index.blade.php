@@ -14,15 +14,7 @@
         </h2>
       </div>
 
-      <ul class="filters_menu text-white fw-bolder  ">
-        <li class="active" data-filter="*">All</li>
-        @php
-        $uniqueCategories = $produk->unique('KATEGORI_PRODUK');
-    @endphp
-        @foreach($uniqueCategories as $jenis)
-        <li  data-filter=".{{ $jenis->KATEGORI_PRODUK }}">{{ $jenis->KATEGORI_PRODUK }}</li>
-       @endforeach
-      </ul>
+     
 
       <div class="filters-content">
         <div class="row grid">
@@ -39,7 +31,7 @@
                   </h5>
                   <p>
                    {{ $row->DESKRIPSI }}
-                  </p>
+                  </p >
                   <div class="options">
                     <h6>
                     Rp.{{number_format($row->HARGA_PRODUK, 0, ',', '.')}}

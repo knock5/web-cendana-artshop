@@ -55,9 +55,15 @@ public function showCart()
 {
     $user_id = Auth::user()->USER_ID;
     $keranjang = keranjang::where('USER_ID', $user_id)->where('status', 'belum')->first();
-    $idCart = $keranjang->ID_KERANJANG;
-    $data = KeranjangItem::where('ID_KERANJANG',$idCart)->get();
-    return view('user.cart', compact('data'));
+    if($keranjang){
+        $idCart = $keranjang->ID_KERANJANG;
+        $data = KeranjangItem::where('ID_KERANJANG',$idCart)->get();
+        return view('user.cart', compact('data'));
+    }else{
+        $data= [];
+        return view('user.cart', compact('data'));
+    }
+  
 
 }
 public function editCart(Request $request, $id)

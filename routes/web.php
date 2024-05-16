@@ -5,7 +5,10 @@ use App\Http\Controllers\user\HomeController;
 use App\Http\Controllers\user\menuController;
 use App\Http\Controllers\admin\DasboardController;
 use App\Http\Controllers\admin\ProdukController;
+use App\Http\Controllers\user\aboutController;
 use App\Http\Controllers\user\cartController;
+use App\Http\Controllers\user\pembayaranController;
+use App\Http\Controllers\user\profileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +36,9 @@ Route::middleware(['auth', 'user'])->group( function () {
     Route::get('/addCart/{id}',[cartController::class,'cart']);
     Route::get('/showCart',[cartController::class,'showCart']);
     Route::post('/editCart/{id}',[cartController::class,'editCart']);
+    Route::post('/pembayaran',[pembayaranController::class,'insert']);
+    Route::get('/profile',[profileController::class,'user']);
+    Route::get('/tentang',[ aboutController::class, 'index']);
    
 });
 

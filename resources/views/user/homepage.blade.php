@@ -19,8 +19,8 @@
                     Sambutlah Kekuatan Warna dan Sentuhan yang Membawa Keajaiban dengan Koleksi Seni Asli Kami.
                     </p>
                     <div class="btn-box">
-                      <a href="" class="btn1">
-                        Order Now
+                      <a href="{{url('cart')}}" class="btn1">
+                        Pesan Sekarang
                       </a>
                     </div>
                   </div>
@@ -40,8 +40,8 @@
                     Temukan Karya Seni yang Membangkitkan Perasaan, Menjadi Pusat Perhatian, dan Menyinari Ruang Anda.
                     </p>
                     <div class="btn-box">
-                      <a href="" class="btn1">
-                        Order Now
+                    <a href="{{url('cart')}}" class="btn1">
+                        Pesan Sekarang
                       </a>
                     </div>
                   </div>
@@ -61,8 +61,8 @@
                     Dari Kanvas ke Dinding Anda: Dapatkan Koleksi Lukisan Berkualitas Tinggi, Dibuat dengan Cinta dan Kecantikan yang Abadi.
                     </p>
                     <div class="btn-box">
-                      <a href="" class="btn1">
-                        Order Now
+                    <a href="{{url('cart')}}" class="btn1">
+                        Pesan Sekarang
                       </a>
                     </div>
                   </div>

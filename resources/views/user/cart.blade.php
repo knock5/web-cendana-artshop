@@ -20,9 +20,15 @@
     }
 </style>
 <section class="food_section layout_padding  ">
-    <div class="container">
-      <div class="heading_container heading_center">
+    <div class="container-fluid">
+      <div class="heading_container heading_center ">
+      @if(empty($data))
         <h2 class="text-white">
+        Tidak ada Produk Dalam Keranjang
+        </h2>
+      </div>
+      @else
+      <h2 class="text-white">
           Keranjang Anda
         </h2>
       </div>
@@ -69,6 +75,9 @@ Pesan Sekarang
        </div>
 
       </div>
+    
+     
+      @endif
         <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -78,7 +87,7 @@ Pesan Sekarang
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form action="{{url('my/user/insert')}}" method="post" enctype="multipart/form-data">
+      <form action="{{url('/pembayaran')}}" method="post" enctype="multipart/form-data">
   @csrf
           <div class="row g-4">
             <div class="col-12">
@@ -89,7 +98,7 @@ Pesan Sekarang
                 </div>
                 
                 <div class="form-floating mb-3">
-  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+  <input type="text" class="form-control" name="alamat" id="floatingInput" placeholder="name@example.com">
   <label for="floatingInput">Alamat tujuan</label>
 </div>
 <div class="form-floating">
@@ -106,7 +115,7 @@ Pesan Sekarang
       </div>
       <div class="modal-footer">
        
-        <button type="button" class="btn btn-primary">bayar</button>
+        <button type="submit" name="proses"  class="btn btn-primary">bayar</button>
       </div>
       </form>
     </div>
@@ -116,6 +125,7 @@ Pesan Sekarang
 
     </div>
 </div>
+
   </section>
   <script>
     function updateJumlah(id) {

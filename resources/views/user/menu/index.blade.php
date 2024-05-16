@@ -196,11 +196,7 @@
                                                         <td>:</td>
                                                         <td>{{ $row->HARGA_PRODUK }}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>Stok</td>
-                                                        <td>:</td>
-                                                        <td>{{ $row->STOK }}</td>
-                                                    </tr>
+                                                    
                                                 </table>
                                                </div>
                                             </div>

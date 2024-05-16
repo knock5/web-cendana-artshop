@@ -84,7 +84,7 @@ if($cart !== null){
             <div class="col-sm-12 total-section text-right">
             <p>total : <span id="totalHarga1"></span></p>
             </div>
-          <hr style="border-top: 8px solid black;">
+          
           @foreach($data as $dt)
            <div class="col-4 mt-3 cart-detail-img">
             @if(empty($dt->Product->GAMBAR_PRODUK))
@@ -127,7 +127,7 @@ if($cart !== null){
               </li>
              
               <li class="nav-item @yield('tentang')">
-                <a class="nav-link" href="about.html">Tentang</a>
+                <a class="nav-link" href="{{url('tentang')}}">Tentang</a>
               </li>
              
             </ul>
@@ -139,6 +139,9 @@ if($cart !== null){
               <div class="row mx-auto"> 
             <div class="col-sm-12">
               @auth
+              <a class="dropdown-item " href="{{ url('profile') }}" >
+              Profile
+            </a>
             <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
               <i class="bi bi-box-arrow-right"></i>
@@ -171,7 +174,7 @@ if($cart !== null){
             <div class="col-sm-12 total-section text-right">
               <p>total : <span id="totalHarga"></span></p>
             </div>
-          <hr style="border-top: 8px solid black;">
+         
           @foreach($data as $dt)
            <div class="col-sm-4 mt-3 cart-detail-img">
             @if(empty($dt->Product->GAMBAR_PRODUK))

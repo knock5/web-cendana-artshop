@@ -90,9 +90,30 @@
   <script src="{{asset('user/js/custom.js')}}"></script>
   <!-- Google Map -->
   <!-- End Google Map -->
-  <script src="{{asset('user/js/core.min.js')}}"></script>
-<script src="{{asset('user/js/script.js')}}"></script>
 
+  <script src="{{asset('user/js/core.min.js')}}"></script>
+<!-- <script src="{{asset('user/js/script.js')}}"></script> -->
+<script>
+            // Set nilai total harga ke dalam elemen HTML
+            
+           const prices = document.querySelectorAll('.harga');
+    const counts = document.querySelectorAll('.jumlah');
+
+    let totalHarga = 0;
+    console.log(prices);
+    // Loop melalui setiap elemen dan tambahkan harga produk yang dihitung dengan jumlahnya ke total harga
+    for (let i = 0; i < prices.length; i++) {
+        const harga = parseInt(prices[i].innerText.replace('Rp.', '').replace('.', '').trim());
+        const jumlahText = counts[i].innerText;
+const jumlah = parseInt(jumlahText.match(/\b1\b/)); 
+        totalHarga += harga * jumlah;
+        console.log(jumlah);
+    }
+    console.log(totalHarga);
+    // Set nilai total harga ke dalam elemen HTML
+    document.getElementById("totalHarga").innerText = "Rp." + totalHarga.toLocaleString();
+    document.getElementById("totalHarga1").innerText = "Rp." + totalHarga.toLocaleString();
+        </script>
 </body>
 
 </html>

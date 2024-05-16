@@ -12,8 +12,8 @@ class Product extends Model
     protected $table = 'produk';
     public $timestamps = false;
     protected $fillable = ['NAMA_PRODUK','GAMBAR_PRODUK','KATEGORI_PRODUK','HARGA_PRODUK','DESKRIPSI','STOK'];
-public function transaksi()
+public function KeranjangItem()
 {
-    return $this->hasMany(transaksi::class);
+    return $this->hasMany(KeranjangItem::class);
 }    
 }

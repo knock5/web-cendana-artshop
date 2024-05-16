@@ -92,4 +92,9 @@ class ProdukController extends Controller
         return redirect('/produk');
 
     }
+    public function delete(String $id)
+    {
+        product::find($id)->delete();
+        return redirect('/produk');
+    }
 }

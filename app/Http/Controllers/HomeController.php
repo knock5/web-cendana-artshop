@@ -23,6 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if (auth()->user()->level == 'admin') {
+            return redirect('/dashboard');
+        } elseif (auth()->user()->level == 'user') {
+            // Logika untuk user
+            return redirect('/');
+        }else {
+            return redirect('/');
+        }
     }
 }

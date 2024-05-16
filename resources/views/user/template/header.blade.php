@@ -1,3 +1,24 @@
+@php
+use Illuminate\Support\Facades\Auth;
+use App\Models\keranjang;
+use App\Models\KeranjangItem;
+use App\Models\Produk;
+if(Auth::check()){
+
+$id = Auth::user()->USER_ID;
+$cart = keranjang::where('USER_ID', $id)->where('status','belum')->first();
+if($cart !== null){
+        $idCart = $cart->ID_KERANJANG;
+        $data = KeranjangItem::where('ID_KERANJANG',$idCart)->get();
+    } else {
+        // $cart null, berikan nilai default untuk $data
+        $data = [];
+    }
+}else{
+  $data = [];
+}
+@endphp
+
 <!DOCTYPE html>
 <html>
 
@@ -19,7 +40,7 @@
   <link rel="stylesheet" type="text/css" href="{{asset('user/css/bootstrap.css')}}" />
 
   <!--owl slider stylesheet -->
-
+  
   <!-- font awesome style -->
   <link href="{{asset('user/css/font-awesome.min.css')}}" rel="stylesheet" />
 
@@ -32,7 +53,7 @@
 </head>
 
 <body class="@yield('body')">
-
+@include('sweetalert::alert')
   <div class="hero_area">
     <div class="bg-box">
       <img src="@yield('image')" alt="">
@@ -52,29 +73,41 @@
               <div class="">
               <a class="cart_link" href="" type="button " data-toggle="dropdown">
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              <span class="badge badge-pill badge-info">2</span>
+              @auth
+              <span class="badge badge-pill badge-info">{{count($data) ?? 0}}</span>
+              @else
+              <span class="badge badge-pill badge-info"></span>
+              @endauth
               </a>
-              <div class="dropdown-menu dropdown-menu-right " style="width: 350px; margin:auto;">
-          <div class="row mx-auto">
+              <div class="dropdown-menu dropdown-menu-right " >
+          <div class="row mx-auto"style="width: 320px; margin:auto; overflow-y: auto; max-height: 300px;">
             <div class="col-sm-12 total-section text-right">
-              <p>total : <span>Rp.1000</span></p>
+            <p>total : <span id="totalHarga1"></span></p>
             </div>
           <hr style="border-top: 8px solid black;">
-           <div class="col-4 ">
-              <img src="{{asset('user/images/2.png')}}" alt="" width="100px " style="aspect-ratio: 1/1">
-             
+          @foreach($data as $dt)
+           <div class="col-4 mt-3 cart-detail-img">
+            @if(empty($dt->Product->GAMBAR_PRODUK))
+              <img src="{{asset('admin/img/nophoto.jpeg')}}" alt="" width="100px " style="aspect-ratio: 1/1">
+            @else
+              <img src="{{asset('storage/'.$dt->Product->GAMBAR_PRODUK)}}" alt="" width="100px " style="aspect-ratio: 1/1">
+             @endif
             </div>
-            <div class="col-8 ">
-            <p>pakaian</p>
-              <span class="price text-info">Rp.1000</span>
-              <span class="count">jumlah : 1</span>
+            <div class="col-8 mt-4 ms-2 cart-detail-product">
+            <p>{{$dt->Product->NAMA_PRODUK}}</p>
+              <span class="price harga text-info">
+              Rp.{{number_format($dt->Product->HARGA_PRODUK, 0, ',', '.')}} 
+              
+</span>
+              <span class="count jumlah">jumlah : {{$dt->JUMLAH}}</span>
 
             </div>
-          
-            <div class="col-sm-12 text-center">
-              <a href="" class="btn btn-primary" type="button">view all</a>
-            </div>
+          @endforeach
+            
           </div>
+          <div class="col-sm-12 text-center">
+              <a href="{{url('showCart')}}" class="btn btn-primary" type="button">view all</a>
+            </div>
                </div>
               </div>
               </div>
@@ -88,46 +121,80 @@
               <li class="nav-item @yield('home')">
                 <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
               </li>
+            
               <li class="nav-item @yield('menu')" >
                 <a class="nav-link" href="{{url('cart')}}">Menu</a>
               </li>
+             
               <li class="nav-item @yield('tentang')">
                 <a class="nav-link" href="about.html">Tentang</a>
               </li>
              
             </ul>
             <div class="user_option">
-              <a href="" class="user_link">
+              <a href="" class="user_link" type="button" data-toggle="dropdown">
                 <i class="fa fa-user" aria-hidden="true"></i>
               </a>
+              <div class="dropdown-menu dropdown-menu-right" style=" margin:auto;">
+              <div class="row mx-auto"> 
+            <div class="col-sm-12">
+              @auth
+            <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();">
+              <i class="bi bi-box-arrow-right"></i>
+              {{__('Sign Out')}}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
+            @else
+            <a class="dropdown-item " href="{{ url('login') }}" >
+              Login
+            </a>
+            @endauth
+            </div>
+           
+              </div>
               </div>
               <div class="user_option d-none d-xl-block ">
               <div class="">
               <a class="cart_link" href="" type="button " data-toggle="dropdown">
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              <span class="badge badge-pill badge-info">2</span>
+              @auth
+              <span class="badge badge-pill badge-info">{{count($data) ?? 0}}</span>
+              @else
+              <span class="badge badge-pill badge-info"></span>
+              @endauth
               </a>
-              <div class="dropdown-menu dropdown-menu-right " style="width: 350px; margin:auto;">
-          <div class="row mx-auto">
+              <div class="dropdown-menu dropdown-menu-right ">
+          <div class="row mx-auto"  style="width: 350px; margin:auto; overflow-y: auto; max-height: 300px;">
             <div class="col-sm-12 total-section text-right">
-              <p>total : <span>Rp.1000</span></p>
+              <p>total : <span id="totalHarga"></span></p>
             </div>
           <hr style="border-top: 8px solid black;">
-           <div class="col-sm-4 cart-detail-img">
-              <img src="{{asset('user/images/2.png')}}" alt="" width="100px " style="aspect-ratio: 1/1">
-             
+          @foreach($data as $dt)
+           <div class="col-sm-4 mt-3 cart-detail-img">
+            @if(empty($dt->Product->GAMBAR_PRODUK))
+              <img src="{{asset('admin/img/nophoto.jpeg')}}" alt="" width="100px " style="aspect-ratio: 1/1">
+            @else
+              <img src="{{asset('storage/'.$dt->Product->GAMBAR_PRODUK)}}" alt="" width="100px " style="aspect-ratio: 1/1">
+             @endif
             </div>
-            <div class="col-sm-8 cart-detail-product">
-            <p>pakaian</p>
-              <span class="price text-info">Rp.1000</span>
-              <span class="count">jumlah : 1</span>
+            <div class="col-sm-8 mt-4 cart-detail-product">
+            <p>{{$dt->Product->NAMA_PRODUK}}</p>
+              <span class="price text-info">
+              Rp.{{number_format($dt->Product->HARGA_PRODUK, 0, ',', '.')}} 
+              
+</span>
+              <span class="count">jumlah : {{$dt->JUMLAH}}</span>
 
             </div>
-          
-            <div class="col-sm-12 text-center">
-              <a href="" class="btn btn-primary" type="button">view all</a>
-            </div>
+          @endforeach
+         
           </div>
+          <div class="col-sm-12 mt-2 text-center">
+              <a href="{{url('showCart')}}" class="btn btn-primary" type="button">view all</a>
+            </div>
                </div>
               </div>
               </div>

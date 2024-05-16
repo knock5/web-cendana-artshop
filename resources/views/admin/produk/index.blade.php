@@ -104,7 +104,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-dismiss="modal">Batal</button>
-                                                    <a href="{{ url('admin/produk/delete/' . $pr->id) }}"><button
+                                                    <a href="{{ url('produk/delete/'. $pr->PRODUK_ID) }}"><button
                                                             type="button" class="btn btn-danger">Hapus</button></a>
 
                                                 </div>

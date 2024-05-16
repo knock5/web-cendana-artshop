@@ -12,43 +12,7 @@
         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
      
 
-        <!-- Nav Item - Alerts -->
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="{{asset('admin/img/no_photo.jpg')}}" alt="" width="40px">
-                <!-- Counter - Alerts -->
-                <span class="d-none d-lg-inline-flex">
-                    Khoirul Huda
-                </span>
-            </a>
-            <!-- Dropdown - Alerts -->
-            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="alertsDropdown">
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                <div class="mr-3">
-                        <div class="icon-circle bg-primary">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        </div>
-                        </div>
-                        <div>
-                        <div class=""> My Profile</div>    
-</div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                <div class="mr-3">
-                        <div class="icon-circle bg-primary">
-                        <i class="fas fa-sign-out-alt"></i>
-                        </div>
-                        </div>
-                        <div>
-                        <div class=""> LogOut</div>    
-                    </div>
-                </a>
-             
-              
-            </div>
-        </li>
+      
 
         <!-- Nav Item - Messages -->
       
@@ -57,7 +21,54 @@
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
-        
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                    
+                    <!-- ini adalah kode untuk menampilkan nama sesuai dengan user yang masuk -->
+                    HUda
+
+                </span>
+                <!-- @empty(Auth::user()->foto)
+                    <img class="img-profile rounded-circle"
+                    src="{{url('admin/img/nophoto.jpeg')}}" width="40px">
+                @else 
+                    <img class="img-profile rounded-circle"
+                    src="{{asset('storage/foto/'.Auth::user()->foto)}}" width="40px">
+                @endempty -->
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="{{url('admin/profile')}}">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    {{__('Profile')}}
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Settings
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Activity Log
+                </a>
+                <div class="dropdown-divider"></div>
+                {{-- <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a> --}}
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
+        </li>
 
     </ul>
 

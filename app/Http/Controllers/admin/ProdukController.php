@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 class ProdukController extends Controller
 {
     //
@@ -24,7 +25,7 @@ class ProdukController extends Controller
         $produk = new Product;
         $produk->NAMA_PRODUK = $request->nama_produk;
         $produk->HARGA_PRODUK = $request->harga;
-        $produk->STOK = $request->stok;
+        
         $produk->DESKRIPSI = $request->deskripsi; 
         if (request()->hasFile('GAMBAR_PRODUK')) {
             // cara kedua
@@ -49,6 +50,7 @@ class ProdukController extends Controller
             $produk->GAMBAR_PRODUK = $fileName;
         }
         $produk->save();
+        Alert::success('Berhasil!', 'Data Produk berhasil ditambahkan');
         return redirect('/produk');
         
 
@@ -64,7 +66,7 @@ class ProdukController extends Controller
         $produk = product::findOrFail($id);
         $produk->NAMA_PRODUK = $request->nama_produk;
         $produk->HARGA_PRODUK = $request->harga;
-        $produk->STOK = $request->stok;
+        
         $produk->DESKRIPSI = $request->deskripsi; 
         $oldFileName = $produk->GAMBAR_PRODUK;
         if ($request->hasFile('GAMBAR_PRODUK')) {
@@ -89,12 +91,14 @@ class ProdukController extends Controller
             $produk->GAMBAR_PRODUK = $fileName;
         }
         $produk->save();
+        Alert::success('Berhasil!', 'Data Produk berhasil di edit');
         return redirect('/produk');
 
     }
     public function delete(String $id)
     {
         product::find($id)->delete();
+        Alert::success('Berhasil!', 'Data Produk berhasil dihapus');
         return redirect('/produk');
     }
 }

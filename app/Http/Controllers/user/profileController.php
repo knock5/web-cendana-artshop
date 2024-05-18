@@ -14,4 +14,11 @@ class profileController extends Controller
         $user = Users::findOrFail($id);
         return view('user.profile',compact('user'));
     }
+
+    public function admin()
+    {
+        $id = Auth::user()->USER_ID;
+        $user = Users::findOrFail($id);
+        return view('admin.profile',compact('user'));
+    }
 }

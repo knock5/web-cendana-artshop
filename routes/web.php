@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\user\HomeController;
 use App\Http\Controllers\user\menuController;
 use App\Http\Controllers\admin\DasboardController;
+use App\Http\Controllers\admin\laporanController;
 use App\Http\Controllers\admin\ProdukController;
 use App\Http\Controllers\user\aboutController;
 use App\Http\Controllers\user\cartController;
@@ -31,6 +32,9 @@ Route::post('/produk/store',[ProdukController::class, 'create']);
 Route::get('/produk/edit/{id}',[ProdukController::class, 'edit']);
 Route::post('/produk/update/{id}',[ProdukController::class, 'update']);
 Route::get('/produk/delete/{id}',[ProdukController::class, 'delete']);
+Route::get('/laporan',[laporanController::class,'index']);
+Route::get('/cetak',[laporanController::class,'cetak']);
+Route::get('/admin/profile',[profileController::class,'admin']);
 });
 Route::middleware(['auth', 'user'])->group( function () {
     Route::get('/addCart/{id}',[cartController::class,'cart']);
@@ -39,6 +43,7 @@ Route::middleware(['auth', 'user'])->group( function () {
     Route::post('/pembayaran',[pembayaranController::class,'insert']);
     Route::get('/profile',[profileController::class,'user']);
     Route::get('/tentang',[ aboutController::class, 'index']);
+    
    
 });
 

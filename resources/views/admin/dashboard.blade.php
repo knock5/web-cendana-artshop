@@ -13,7 +13,7 @@
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                         Jumlah Produk</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{$produk}}</div>
                 </div>
                 <div class="col-auto">
                     <i class="fab fa-product-hunt fa-2x text-gray-300"></i>
@@ -31,7 +31,7 @@
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                         Total Produk Terjual</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{$keranjangitem}}</div>
                 </div>
                 <div class="col-auto">
                 <i class="fab fa-product-hunt fa-2x text-gray-300"></i>
@@ -51,19 +51,14 @@
                     </div>
                     <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">p</div>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"> Rp.{{number_format($pendapatan, 0, ',', '.')}}</div>
                         </div>
-                        <div class="col">
-                            <div class="progress progress-sm mr-2">
-                                <div class="progress-bar bg-info" role="progressbar"
-                                    style="width: 12%" aria-valuenow="50" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                <i class="fas fa-money-bill-wave fa-2x text-gray-300"></i>
+                    <!-- <i class="fas fa-clipboard-list fa-2x text-gray-300"></i> -->
                 </div>
             </div>
         </div>
@@ -77,11 +72,11 @@
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                      vhghg  </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                      Jumlah User  </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{$user}}</div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                <i class="fas fa-users fa-2x text-gray-300"></i>
                 </div>
             </div>
         </div>

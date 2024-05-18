@@ -13,9 +13,9 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Gambar</th>
+                           
                             <th>Harga</th>
-                            <th>Stok</th>
+                           
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -28,9 +28,9 @@
                             <tr>
                                 <td>{{ $id++ }}</td>
                                 <td>{{ $pr->NAMA_PRODUK }}</td>
-                                <td>{{ $pr->PRODUK_ID}}</td>
-                                <td>{{ $pr->HARGA_PRODUK }}</td>
-                                <td>{{ $pr->STOK }}</td>
+                               
+                                <td>Rp.{{number_format($pr->HARGA_PRODUK, 0, ',', '.')}}</td>
+                               
                                 
                                 <td><!-- Button trigger modal -->
 
@@ -71,12 +71,9 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Harga</td>
-                                                        <td>{{ $pr->HARGA_PRODUK }}</td>
+                                                        <td>Rp.{{number_format($pr->HARGA_PRODUK, 0, ',', '.')}}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>Stok</td>
-                                                        <td>{{ $pr->STOK }}</td>
-                                                    </tr>
+                                                    
                                                 </table>
                                                </div>
                                             </div>

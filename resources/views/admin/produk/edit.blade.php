@@ -35,10 +35,7 @@
                 <input type="text" name="deskripsi" class="form-control" id="floatingInput" value="{{$pr->DESKRIPSI}}" placeholder="name@example.com">
                 <label for="floatingInput">Deskripsi</label>
                 </div>
-                <div class="form-floating mb-3">
-                <input type="text" name="stok" class="form-control" id="floatingInput" value="{{$pr->STOK}}" placeholder="name@example.com">
-                <label for="floatingInput">jumlah stok</label>
-                </div>
+             
                 <div class="col-12 mx-auto">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

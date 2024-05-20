@@ -56,7 +56,9 @@
                                                     @endif</td>
                         <td id="p">{{$kr->Product->NAMA_PRODUK}}</td>
                         <td id="p" class="price1 ">{{$kr->Product->HARGA_PRODUK}}</td>
-                        <td id="p" ><input class="count1 p" type="number" id="jumlah_barang_{{$kr->ITEM_ID}}" min="1" value="{{$kr->JUMLAH}}" onchange="updateJumlah({{$kr->ITEM_ID}})" ></td>
+
+                        <td id="p" ><input class="count1 p" type="number" min="0" id="jumlah_barang_{{$kr->ITEM_ID}}" value="{{$kr->JUMLAH}}" onchange="updateJumlah({{$kr->ITEM_ID}})" ></td>
+
                     </tr>
                     @endforeach
                     <tr>

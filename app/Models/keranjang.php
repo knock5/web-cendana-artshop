@@ -11,7 +11,7 @@ class keranjang extends Model
     protected $primaryKey = 'ID_KERANJANG';
     protected $table = 'keranjang';
     public $timestamps = false;
-    public $fillable = ['USER_ID','status'];
+    public $fillable = ['USER_ID','waktu','status'];
 
     public function users()
     {

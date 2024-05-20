@@ -9,14 +9,17 @@
 <style>
     table{
         border-radius: 10px 10px 10px 10px;
-        background-color: #AF8F6F;
-        border: 1px solid black;
+        background-color: white;
+       
     }
     td{
-        border: 1px solid black;
+       
         padding: 5px;
         font-weight: bold;
         color: black;
+    }
+    #p{
+      vertical-align: middle;
     }
 </style>
 <section class="food_section layout_padding  ">
@@ -47,13 +50,13 @@
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td> @if(empty($kr->Product->GAMBAR_PRODUK))
-                                                    <img src="{{asset('admin/img/nophoto.jpeg')}}" alt="" width="200px">
+                                                    <img src="{{asset('admin/img/nophoto.jpeg')}}" alt="" width="200px" style="aspect-ratio: 1/1; object-fit: cover;">
                                                     @else
                                                     <img src="{{asset('storage/'.$kr->Product->GAMBAR_PRODUK)}}" alt="" width="200px">
                                                     @endif</td>
-                        <td>{{$kr->Product->NAMA_PRODUK}}</td>
-                        <td class="price1">{{$kr->Product->HARGA_PRODUK}}</td>
-                        <td><input class="count1" type="number" id="jumlah_barang_{{$kr->ITEM_ID}}" value="{{$kr->JUMLAH}}" onchange="updateJumlah({{$kr->ITEM_ID}})" ></td>
+                        <td id="p">{{$kr->Product->NAMA_PRODUK}}</td>
+                        <td id="p" class="price1 ">{{$kr->Product->HARGA_PRODUK}}</td>
+                        <td id="p" ><input class="count1 p" type="number" id="jumlah_barang_{{$kr->ITEM_ID}}" value="{{$kr->JUMLAH}}" onchange="updateJumlah({{$kr->ITEM_ID}})" ></td>
                     </tr>
                     @endforeach
                     <tr>
@@ -98,17 +101,23 @@ Pesan Sekarang
                 </div>
                 
                 <div class="form-floating mb-3">
-  <input type="text" class="form-control" name="alamat" id="floatingInput" placeholder="name@example.com">
+  <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" id="floatingInput" placeholder="name@example.com">
   <label for="floatingInput">Alamat tujuan</label>
+  @error('alamat')
+                <div class="invalid-feedback">{{$message}}</div>
+                @enderror
 </div>
 <div class="form-floating">
-  <select class="form-select" name="metode" id="floatingSelect" aria-label="Floating label select example">
-    <option selected>----pilih metode ----</option>
+  <select class="form-select @error('metode') is-invalid @enderror" name="metode" id="floatingSelect" aria-label="Floating label select example">
+    <option value="0" selected>----pilih metode ----</option>
     <option value="BRIVA">BRIVA</option>
     <option value="BNI">BNI</option>
     <option value="BCA">BCA</option>
   </select>
   <label for="floatingSelect">Metode Pembayaran</label>
+  @error('metode')
+                <div class="invalid-feedback">{{$message}}</div>
+                @enderror
 </div>
 
           </div>

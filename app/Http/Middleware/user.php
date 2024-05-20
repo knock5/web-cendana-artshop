@@ -15,6 +15,10 @@ class user
      */
     public function handle(Request $request, Closure $next ): Response
     {
-        return $next($request);
+        if (auth()->check() && auth()->user()->level == 'user') {
+            return $next($request);
+        }
+
+        return redirect('/login')->with('error', 'Silahkan login terlebih dahulu');
     }
 }

@@ -15,6 +15,7 @@ class cartController extends Controller
     //
     public function cart(String $id)
 {
+   
     $produk = Product::findOrFail($id);
     $user_id = Auth::user()->USER_ID;
     $jumlah = 1;

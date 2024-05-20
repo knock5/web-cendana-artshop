@@ -25,7 +25,7 @@
 
     </div>
     <div class="col-md-6 mt-3">
-    <h2 class="text-white">Visa & Misi</h2>
+    <h2 class="text-white">Visi & Misi</h2>
     <p>Visi kami adalah menjadi destinasi utama bagi seniman dan pecinta seni, yang memberikan alat yang diperlukan untuk mewujudkan karya seni terbaik mereka. Misi kami adalah menyediakan produk seni berkualitas tinggi dengan harga terjangkau, mempromosikan seni lokal, dan mendukung pertumbuhan komunitas seni yang inklusif dan beragam.</p>
     </div>
 

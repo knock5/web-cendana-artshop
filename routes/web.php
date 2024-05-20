@@ -22,8 +22,6 @@ use App\Http\Controllers\user\profileController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/cart', [menuController::class, 'index']);
 Route::middleware(['auth', 'admin'])->group( function () {
 Route::get('/dashboard', [DasboardController::class, 'index']);
 Route::get('/produk',[ProdukController::class, 'index']);
@@ -37,12 +35,15 @@ Route::get('/cetak',[laporanController::class,'cetak']);
 Route::get('/admin/profile',[profileController::class,'admin']);
 });
 Route::middleware(['auth', 'user'])->group( function () {
+    Route::get('/tentang',[ aboutController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/cart', [menuController::class, 'index']);
     Route::get('/addCart/{id}',[cartController::class,'cart']);
     Route::get('/showCart',[cartController::class,'showCart']);
     Route::post('/editCart/{id}',[cartController::class,'editCart']);
     Route::post('/pembayaran',[pembayaranController::class,'insert']);
     Route::get('/profile',[profileController::class,'user']);
-    Route::get('/tentang',[ aboutController::class, 'index']);
+   
     
    
 });

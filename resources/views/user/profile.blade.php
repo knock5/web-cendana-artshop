@@ -15,46 +15,23 @@
             </h2>
         </div>
         <div class="row">
-        <div class="col-12 mt-3">
-        <div class="card">
-                        <div class="card-body">
-                            <form action="{{url('admin/profile/'.$user->id)}}" method="post" enctype="multipart/form-data">
-                                @method('PATCH')
-                                @csrf
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Nama</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$user->name}}"  readonly required autocomplete="name">
-                                        
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Email</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email',$user->email)}}" readonly>
-                                       
-                                    </div>
-                                </div>
-                                
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Alamat</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control @error('password') is-invalid @enderror" value="{{$user->ALAMAT}}" readonly >
-                                     
-                                    </div>
-                                </div>
-                              
-                            </form>
-                        </div>
-                    </div>
-        </div>
+        <div class="col-6 mt-3 mx-auto">
+        <table bgcolor="white" class="table table-bordered rounded">
+                  <thead>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>Email</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->alamat}}</td>
+                        <td>{{$user->email}}</td>
+                    </tr>
+                  </tbody>
+                 </table>
     </div>
+        </div>
 
 </section>
 @endsection

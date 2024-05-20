@@ -19,6 +19,6 @@ class admin
             return $next($request);
         }
 
-        return redirect('/');
+        return redirect('/login')->with('error', 'Silahkan login terlebih dahulu');
     }
 }

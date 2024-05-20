@@ -29,7 +29,7 @@ class HomeController extends Controller
             // Logika untuk user
             return redirect('/');
         }else {
-            return redirect('/');
+            return redirect('/login');
         }
     }
 }

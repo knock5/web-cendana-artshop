@@ -35,25 +35,31 @@ class laporanController extends Controller
         // ->where('k.status', '=', 'selesai')
         // ->orderBy('pb.WAKTU', 'DESC')
         // ->get();
-        $laporanPenjualan = DB::table('pemesanan AS pm')
-    ->join('users AS u', 'pm.USER_ID', '=', 'u.USER_ID')
-    ->join('keranjang AS k', 'pm.USER_ID', '=', 'k.USER_ID')
-    ->join('keranjang_item AS ki', 'k.ID_KERANJANG', '=', 'ki.ID_KERANJANG')
-    ->join('produk AS p', 'ki.PRODUK_ID', '=', 'p.PRODUK_ID')
-    ->join('pembayaran AS pb', 'pm.PEMESANAN_ID', '=', 'pb.PEMESANAN_ID')
-    ->where('k.status', 'selesai')
-    ->groupBy('pm.PEMESANAN_ID', 'u.name', 'pb.METODE_PEMBAYARAN', 'pb.WAKTU')
-    ->orderByDesc('pb.WAKTU')
-    ->select(
-        'u.name AS nama_akun',
-        DB::raw("GROUP_CONCAT(p.NAMA_PRODUK SEPARATOR ', ') AS produk"),
-        DB::raw("GROUP_CONCAT(p.HARGA_PRODUK SEPARATOR ', ') AS harga_produk"),
-        DB::raw("GROUP_CONCAT(ki.JUMLAH SEPARATOR ', ') AS jumlah_produk"),
-        DB::raw("SUM(p.HARGA_PRODUK * ki.JUMLAH) AS total_harga"),
-        'pb.METODE_PEMBAYARAN AS metode_pembayaran',
-        'pb.WAKTU AS waktu'
-    )
-    ->get();
+        $laporanPenjualan = DB::table('pembayaran AS pb')
+        ->join('keranjang AS k', function ($join) {
+            $join->on('pb.USER_ID', '=', 'k.USER_ID')
+                ->on('pb.WAKTU', '=', 'k.WAKTU');
+        })
+        ->join('keranjang_item AS ki', 'k.ID_KERANJANG', '=', 'ki.ID_KERANJANG')
+        ->join('produk AS p', 'ki.PRODUK_ID', '=', 'p.PRODUK_ID')
+        ->join('users AS u', 'k.USER_ID', '=', 'u.USER_ID')
+        ->where('k.status', 'selesai')
+        ->groupBy('pb.WAKTU', 'pb.PEMBAYARAN_ID', 'u.name', 'pb.METODE_PEMBAYARAN')
+        ->orderByDesc('pb.WAKTU')
+        ->select(
+            'u.name AS nama_akun',
+            DB::raw("GROUP_CONCAT(p.NAMA_PRODUK SEPARATOR ', ') AS produk"),
+            DB::raw("GROUP_CONCAT(p.HARGA_PRODUK SEPARATOR ', ') AS harga_produk"),
+            DB::raw("GROUP_CONCAT(ki.JUMLAH SEPARATOR ', ') AS jumlah_produk"),
+            DB::raw("SUM(p.HARGA_PRODUK * ki.JUMLAH) AS total_harga"),
+            'pb.METODE_PEMBAYARAN AS metode_pembayaran',
+            'pb.WAKTU AS waktu_pembayaran',
+            
+        )
+        ->get();
+    
+    
+
         // $laporanPenjualan = DB::table('pemesanan AS pm')
         // ->join('users AS u', 'pm.USER_ID', '=', 'u.USER_ID')
         // ->join('keranjang AS k', 'pm.USER_ID', '=', 'k.USER_ID')
@@ -78,25 +84,28 @@ class laporanController extends Controller
     }
     public function cetak()
     {
-        $laporanPenjualan = DB::table('pemesanan AS pm')
-    ->join('users AS u', 'pm.USER_ID', '=', 'u.USER_ID')
-    ->join('keranjang AS k', 'pm.USER_ID', '=', 'k.USER_ID')
-    ->join('keranjang_item AS ki', 'k.ID_KERANJANG', '=', 'ki.ID_KERANJANG')
-    ->join('produk AS p', 'ki.PRODUK_ID', '=', 'p.PRODUK_ID')
-    ->join('pembayaran AS pb', 'pm.PEMESANAN_ID', '=', 'pb.PEMESANAN_ID')
-    ->where('k.status', 'selesai')
-    ->groupBy('pm.PEMESANAN_ID', 'u.name', 'pb.METODE_PEMBAYARAN', 'pb.WAKTU')
-    ->orderByDesc('pb.WAKTU')
-    ->select(
-        'u.name AS nama_akun',
-        DB::raw("GROUP_CONCAT(p.NAMA_PRODUK SEPARATOR ', ') AS produk"),
-        DB::raw("GROUP_CONCAT(p.HARGA_PRODUK SEPARATOR ', ') AS harga_produk"),
-        DB::raw("GROUP_CONCAT(ki.JUMLAH SEPARATOR ', ') AS jumlah_produk"),
-        DB::raw("SUM(p.HARGA_PRODUK * ki.JUMLAH) AS total_harga"),
-        'pb.METODE_PEMBAYARAN AS metode_pembayaran',
-        'pb.WAKTU AS waktu'
-    )
-    ->get();
+        $laporanPenjualan = DB::table('pembayaran AS pb')
+        ->join('keranjang AS k', function ($join) {
+            $join->on('pb.USER_ID', '=', 'k.USER_ID')
+                ->on('pb.WAKTU', '=', 'k.WAKTU');
+        })
+        ->join('keranjang_item AS ki', 'k.ID_KERANJANG', '=', 'ki.ID_KERANJANG')
+        ->join('produk AS p', 'ki.PRODUK_ID', '=', 'p.PRODUK_ID')
+        ->join('users AS u', 'k.USER_ID', '=', 'u.USER_ID')
+        ->where('k.status', 'selesai')
+        ->groupBy('pb.WAKTU', 'pb.PEMBAYARAN_ID', 'u.name', 'pb.METODE_PEMBAYARAN')
+        ->orderByDesc('pb.WAKTU')
+        ->select(
+            'u.name AS nama_akun',
+            DB::raw("GROUP_CONCAT(p.NAMA_PRODUK SEPARATOR ', ') AS produk"),
+            DB::raw("GROUP_CONCAT(p.HARGA_PRODUK SEPARATOR ', ') AS harga_produk"),
+            DB::raw("GROUP_CONCAT(ki.JUMLAH SEPARATOR ', ') AS jumlah_produk"),
+            DB::raw("SUM(p.HARGA_PRODUK * ki.JUMLAH) AS total_harga"),
+            'pb.METODE_PEMBAYARAN AS metode_pembayaran',
+            'pb.WAKTU AS waktu_pembayaran',
+            
+        )
+        ->get();
     $pdf = pdf::loadview('admin.laporanPDF',['laporanPenjualan'=>$laporanPenjualan]);
     return $pdf->download('laporanPenjualan.pdf');
     }

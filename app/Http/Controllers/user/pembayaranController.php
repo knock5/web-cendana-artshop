@@ -13,11 +13,21 @@ class pembayaranController extends Controller
     //
     public function insert(Request $request) 
     {
+        $request->validate(
+            [
+                'alamat'=> 'required',
+                'metode'=> 'required|not_in:0',
+            ],
+            [
+                'alamat.required' => 'Alamat harus diisi',
+                'motode.not_in' => 'Metode pembayaran harus dipilih',
+            ]
+            );
         $user_id = Auth::user()->USER_ID;
         $pesanan = pemesanan::create([
             'USER_ID' => $user_id,
             'TOTAL_HARGA'=> $request->total,
-            'ALAMAT'=> $request->alamat
+            'ALAMAT'=> $request->alamat,
 
         ]);
         $keranjang = keranjang::where('USER_ID', $user_id)->where('status', 'belum')->first();

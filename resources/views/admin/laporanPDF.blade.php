@@ -17,13 +17,13 @@
 	</style>
 	<center>
 		<h5>Laporan Penjualan</h4>
-		<h6>CendanaArshop</h6>
+		<h6>CendanaArtshop</h6>
 	</center>
  
 	<table class='table table-bordered'>
     <thead>
                         <tr>
-                        <td>NO</td>
+                        <th>No</th>
                         <th>Nama Akun</th>
                 <th>Produk</th>
                 <th>Harga Produk</th>
@@ -39,37 +39,45 @@
                 $id = 1;
             @endphp
             @foreach ($laporanPenjualan as $transaksi)
-                {{-- Pisahkan produk dalam array menggunakan explode --}}
-                @php
-                    $produks = explode(',', $transaksi->produk);
-                    $hargaProduks = explode(',', $transaksi->harga_produk);
-                    $jumlahProduks = explode(',', $transaksi->jumlah_produk);
-                @endphp
+        {{-- Pisahkan produk dalam array menggunakan explode --}}
+        @php
+            $produks = explode(',', $transaksi->produk);
+            $hargaProduks = explode(',', $transaksi->harga_produk);
+            $jumlahProduks = explode(',', $transaksi->jumlah_produk);
+        @endphp
 
-                {{-- Loop setiap produk pada transaksi --}}
-                @for ($i = 0; $i < count($produks); $i++)
-                    <tr>
-                        
-                        {{-- Baris pertama menampilkan nama akun --}}
-                        @if ($i === 0)
-                        <td id="p" rowspan="{{ count($produks) }}">{{ $id++ }}</td>
-                            <td id="p" rowspan="{{ count($produks) }}" data-dt-order="disable">{{ $transaksi->nama_akun }}</td>
-                        @endif
+        {{-- Tentukan jumlah baris untuk setiap transaksi --}}
+        @php
+            $rowspan = count($produks);
+        @endphp
 
-                        {{-- Tampilkan detail produk --}}
-                        <td>{{ $produks[$i] }}</td>
-                        <td>{{ $hargaProduks[$i] }}</td>
-                        <td>{{ $jumlahProduks[$i] }}</td>
+        {{-- Loop setiap produk pada transaksi --}}
+        @for ($i = 0; $i < $rowspan; $i++)
+            <tr>
+                {{-- Baris pertama menampilkan nama akun, total harga, metode pembayaran, dan waktu pembayaran --}}
+                
+               
+                @if ($i === 0)
+                    <td id="p" rowspan="{{ $rowspan }}">{{ $id++ }}</td>
+                    <td id="p" rowspan="{{ $rowspan }}">{{ $transaksi->nama_akun }}</td>
+                    @endif
+                    <td>{{ $produks[$i] }}</td>
+                <td>{{ $hargaProduks[$i] }}</td>
+                <td>{{ $jumlahProduks[$i] }}</td>
+                @if ($i === 0)
+                    
+                    <td id="p" rowspan="{{ $rowspan }}">Rp.{{ number_format($transaksi->total_harga, 0, ',', '.') }}</td>
+                    <td id="p" rowspan="{{ $rowspan }}">{{ $transaksi->metode_pembayaran }}</td>
+                    <td id="p" rowspan="{{ $rowspan }}">{{ $transaksi->waktu_pembayaran }}</td> {{-- Menggunakan waktu_pembayaran jika nama kolomnya berbeda --}}
+                    @endif
 
-                        {{-- Tampilkan total harga hanya pada baris pertama --}}
-                        @if ($i === 0)
-                            <td id="p" rowspan="{{ count($produks) }}" data-dt-order="disable">Rp.{{number_format($transaksi->total_harga, 0, ',', '.')}}</td>
-                            <td id="p" rowspan="{{ count($produks) }}" data-dt-order="disable">{{ $transaksi->metode_pembayaran }}</td>
-                            <td id="p" rowspan="{{ count($produks) }}" data-dt-order="disable">{{ $transaksi->waktu }}</td>
-                        @endif
-                    </tr>
-                @endfor
-            @endforeach
+                {{-- Tampilkan detail produk --}}
+               
+            </tr>
+        @endfor
+    @endforeach
+
+
         </tbody>
 	</table>
  

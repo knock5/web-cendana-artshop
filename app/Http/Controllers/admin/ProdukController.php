@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -22,6 +23,27 @@ class ProdukController extends Controller
     }
     public function create(Request $request)
     {
+        $request->validate(
+        [
+         'nama_produk' => 'required|max:50',
+         'harga' => 'required|integer',
+         'GAMBAR_PRODUK' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+         'deskripsi' => 'required|max:200',
+        ],
+        [
+            'nama_produk.required' => 'Nama produk harus diisi',
+            'nama_produk.max' => 'Maksimal 50 karakter',
+            'harga.required' => 'Harga produk harus diisi',
+            'harga.integer' => 'Harga produk harus berupa angka',
+            'GAMBAR_PRODUK.image' => 'File ekstensi harus jpg, jpeg, gif, png, svg',
+            'GAMBAR_PRODUK.mimes' => 'File ekstensi harus jpg, jpeg, gif, png, svg',
+            'GAMBAR_PRODUK.max' => 'size gambar maksimal 2MB',
+            'deskripsi.required' => 'Deskripsi produk harus diisi',
+            'deskripsi.max' => 'Maksimal 200 karakter',
+            
+        ]
+);
+
         $produk = new Product;
         $produk->NAMA_PRODUK = $request->nama_produk;
         $produk->HARGA_PRODUK = $request->harga;
@@ -63,6 +85,22 @@ class ProdukController extends Controller
     }
     public function update(Request $request, String $id)
     {
+        $request->validate(
+            [
+             'nama_produk' => 'max:50',
+             'harga' => 'integer',
+             'GAMBAR_PRODUK' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'deskripsi' => 'max:200',
+            ],
+            [
+                'nama_produk.max' => 'Maksimal 50 karakter',   
+                'harga.integer' => 'Harga produk harus berupa angka',
+                'GAMBAR_PRODUK.image' => 'File ekstensi harus jpg, jpeg, gif, png, svg',
+                'GAMBAR_PRODUK.mimes' => 'File ekstensi harus jpg, jpeg, gif, png, svg',
+                'GAMBAR_PRODUK.max' => 'size gambar maksimal 2MB',
+                'deskripsi.max' => 'Maksimal 200 karakter',
+            ]
+    );
         $produk = product::findOrFail($id);
         $produk->NAMA_PRODUK = $request->nama_produk;
         $produk->HARGA_PRODUK = $request->harga;

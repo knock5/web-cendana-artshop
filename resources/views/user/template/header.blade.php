@@ -123,7 +123,7 @@ if($cart !== null){
               </li>
             
               <li class="nav-item @yield('menu')" >
-                <a class="nav-link" href="{{url('cart')}}">Menu</a>
+                <a class="nav-link" href="{{url('cart')}}">Produk</a>
               </li>
              
               <li class="nav-item @yield('tentang')">
@@ -133,7 +133,7 @@ if($cart !== null){
             </ul>
             <div class="user_option">
               <a href="" class="user_link" type="button" data-toggle="dropdown">
-                <i class="fa fa-user" aria-hidden="true"></i>
+                <i class="fa fa-user fa-2x" aria-hidden="true"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right" style=" margin:auto;">
               <div class="row mx-auto"> 
@@ -162,7 +162,7 @@ if($cart !== null){
               <div class="user_option d-none d-xl-block ">
               <div class="">
               <a class="cart_link" href="" type="button " data-toggle="dropdown">
-              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
               @auth
               <span class="badge badge-pill badge-info">{{count($data) ?? 0}}</span>
               @else

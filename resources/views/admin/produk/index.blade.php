@@ -13,9 +13,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                           
                             <th>Harga</th>
-                           
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -54,9 +52,9 @@
                                             <div class="row">
                                                 <div class="col-md-8 mx-auto">
                                                     @if(empty($pr->GAMBAR_PRODUK))
-                                                    <img src="{{asset('admin/img/nophoto.jpeg')}}" alt="" class="img-fluid">
+                                                    <img src="{{asset('admin/img/nophoto.jpeg')}}" alt="" class="img-fluid" style="aspect-ratio: 1/1; object-fit: cover;">
                                                     @else
-                                                    <img src="{{asset('storage/'.$pr->GAMBAR_PRODUK)}}" alt="" class="img-fluid">
+                                                    <img src="{{asset('storage/'.$pr->GAMBAR_PRODUK)}}" alt="" class="img-fluid" style="aspect-ratio: 1/1; object-fit: cover;">
                                                     @endif
                                                 </div>
                                                <div class="col-12">

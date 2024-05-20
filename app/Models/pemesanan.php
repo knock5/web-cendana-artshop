@@ -11,7 +11,7 @@ class pemesanan extends Model
     protected $primaryKey = 'PEMESANAN_ID';
     protected $table = 'pemesanan';
     public $timestamps = false;
-    public $fillable = ['ITEM_ID','USER_ID','TOTAL_HARGA'];
+    public $fillable = ['ITEM_ID','USER_ID','ALAMAT','TOTAL_HARGA'];
 
   
 

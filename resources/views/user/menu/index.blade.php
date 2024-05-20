@@ -9,7 +9,7 @@
 <style>
   td{
     padding: 5px;
-    border: 1px solid black;
+   
   }
 </style>
 <section class="food_section layout_padding position-relative ">
@@ -25,14 +25,14 @@
       <div class="filters-content">
         <div class="row grid">
             @foreach ($produk as $row)
-          <div class="col-sm-6 col-lg-4 all {{ $row->KATEGORI_PRODUK }}">
+          <div class="col-sm-6 col-lg-4 all ">
             <div class="box">
               <div>
                 <div class="img-box">
                 @if(empty($row->GAMBAR_PRODUK))
-                                                    <img src="{{asset('admin/img/nophoto.jpeg')}}" alt="" class="img-fluid">
+                                                    <img src="{{asset('admin/img/nophoto.jpeg')}}" alt="" class="img-fluid"  >
                                                     @else
-                                                    <img src="{{asset('storage/'.$row->GAMBAR_PRODUK)}}" alt="" class="img-fluid">
+                                                    <img src="{{asset('storage/'.$row->GAMBAR_PRODUK)}}" alt="" class="img-fluid"  >
                                                     @endif
                 </div>
                 <div class="detail-box">
@@ -174,9 +174,9 @@
                                             <div class="row">
                                                 <div class="col-md-8 mx-auto">
                                                     @if(empty($row->GAMBAR_PRODUK))
-                                                    <img src="{{asset('admin/img/nophoto.jpeg')}}" alt="" class="img-fluid">
+                                                    <img src="{{asset('admin/img/nophoto.jpeg')}}" alt="" class="img-fluid" style="aspect-ratio: 1/1; object-fit: cover;">
                                                     @else
-                                                    <img src="{{asset('storage/'.$row->GAMBAR_PRODUK)}}" alt="" class="img-fluid">
+                                                    <img src="{{asset('storage/'.$row->GAMBAR_PRODUK)}}" alt="" class="img-fluid" style="aspect-ratio: 1/1; object-fit: cover;">
                                                     @endif
                                                 </div>
                                                <div class="col-12 mt-2">
@@ -194,7 +194,7 @@
                                                     <tr>
                                                         <td>Harga</td>
                                                         <td>:</td>
-                                                        <td>{{ $row->HARGA_PRODUK }}</td>
+                                                        <td>Rp.{{number_format($row->HARGA_PRODUK, 0, ',', '.')}}</td>
                                                     </tr>
                                                     
                                                 </table>

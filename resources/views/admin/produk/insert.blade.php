@@ -8,7 +8,7 @@
         <h1>Tambah Data Produk</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">dashboard</a></li>
+                <li class="breadcrumb-item">dashboard</li>
                 <li class="breadcrumb-item">Produk</li>
                 <li class="breadcrumb-item active">Tambah Produk</li>
             </ol>
@@ -17,25 +17,46 @@
             @csrf
             <div class="row">
                 <div class="col-md-6 col-12">
+                @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
                 <div class="form-floating mb-3">
-                <input type="text" name="nama_produk" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="text" name="nama_produk" class="form-control @error('nama_produk') is-invalid @enderror" id="floatingInput" placeholder="name@example.com">
                 <label for="floatingInput">nama barang</label>
+                @error('nama_produk')
+                <div class="invalid-feedback">{{$message}}</div>
+                @enderror
                 </div>
                 <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Gambar Barang</span>
-                <input type="file" class="form-control" name="GAMBAR_PRODUK" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="file" class="form-control @error('GAMBAR_PRODUK') is-invalid @enderror" name="GAMBAR_PRODUK" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                @error('GAMBAR_PRODUK')
+                <div class="invalid-feedback">{{$message}}</div>
+                @enderror
                 </div>
                 <div class="form-floating mb-3">
-                <input type="text" name="harga" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="text" name="harga" class="form-control @error('harga') is-invalid @enderror" id="floatingInput" placeholder="name@example.com">
                 <label for="floatingInput">Harga Barang</label>
+                @error('harga')
+                <div class="invalid-feedback">{{$message}}</div>
+                @enderror
                 </div>
                 <div class="form-floating mb-3">
-                <input type="text" name="deskripsi" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="text" name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="floatingInput" placeholder="name@example.com">
                 <label for="floatingInput">Deskripsi</label>
+                @error('deskripsi')
+                <div class="invalid-feedback">{{$message}}</div>
+                @enderror
                 </div>
                
                 <div class="col-12 mx-auto">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
                 </div>
 

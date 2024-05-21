@@ -56,7 +56,7 @@ if($cart !== null){
 @include('sweetalert::alert')
   <div class="hero_area">
     <div class="bg-box">
-      <img src="@yield('image')" alt="">
+      <img src="@yield('image')" alt="" >
     </div>
     <!-- header section strats -->
     <header class="header_section">
@@ -81,9 +81,7 @@ if($cart !== null){
               </a>
               <div class="dropdown-menu dropdown-menu-right " >
           <div class="row mx-auto"style="width: 320px; margin:auto; overflow-y: auto; max-height: 300px;">
-            <div class="col-sm-12 total-section text-right">
-            <p>total : <span id="totalHarga1"></span></p>
-            </div>
+           
           
           @foreach($data as $dt)
            <div class="col-4 mt-3 cart-detail-img">
@@ -94,7 +92,7 @@ if($cart !== null){
              @endif
             </div>
             <div class="col-8 mt-4 ms-2 cart-detail-product">
-            <p>{{$dt->Product->NAMA_PRODUK}}</p>
+            <p style="color: black;">{{$dt->Product->NAMA_PRODUK}}</p>
               <span class="price harga text-info">
               Rp.{{number_format($dt->Product->HARGA_PRODUK, 0, ',', '.')}} 
               
@@ -171,9 +169,7 @@ if($cart !== null){
               </a>
               <div class="dropdown-menu dropdown-menu-right ">
           <div class="row mx-auto"  style="width: 350px; margin:auto; overflow-y: auto; max-height: 300px;">
-            <div class="col-sm-12 total-section text-right">
-              <p>total : <span id="totalHarga"></span></p>
-            </div>
+            
          
           @foreach($data as $dt)
            <div class="col-sm-4 mt-3 cart-detail-img">
@@ -184,7 +180,7 @@ if($cart !== null){
              @endif
             </div>
             <div class="col-sm-8 mt-4 cart-detail-product">
-            <p>{{$dt->Product->NAMA_PRODUK}}</p>
+            <p style="color: black;">{{$dt->Product->NAMA_PRODUK}}</p>
               <span class="price text-info">
               Rp.{{number_format($dt->Product->HARGA_PRODUK, 0, ',', '.')}} 
               

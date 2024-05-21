@@ -1,7 +1,7 @@
 @extends('user.template.appuser')
 
 @section('title', 'Homepage')
-@section('image', asset('user/images/2.png'))
+@section('image', asset('user/images/4.png'))
 @section('home', 'active')
 @section('content')
 <section class="slider_section ">
@@ -36,7 +36,7 @@
                     <h1>
                     Kecantikan Abadi
                     </h1>
-                    <p>
+                    <p >
                     Temukan Karya Seni yang Membangkitkan Perasaan, Menjadi Pusat Perhatian, dan Menyinari Ruang Anda.
                     </p>
                     <div class="btn-box">

@@ -1,11 +1,31 @@
 @extends('user.template.appuser')
 
 @section('title', 'Keranjang Anda')
-@section('image', asset('user/images/2.png'))
+@section('image', asset('user/images/4.png'))
 @section('body', 'sub_page')
 
 @section('content')
+@php
+use Illuminate\Support\Facades\Auth;
+use App\Models\keranjang;
+use App\Models\KeranjangItem;
+use App\Models\Produk;
+if(Auth::check()){
 
+$id = Auth::user()->USER_ID;
+$cart = keranjang::where('USER_ID', $id)->where('status','belum')->first();
+if($cart !== null){
+        $idCart = $cart->ID_KERANJANG;
+        $data = KeranjangItem::where('ID_KERANJANG',$idCart)->get();
+    } else {
+        // $cart null, berikan nilai default untuk $data
+        $data = [];
+    }
+}else{
+  $data = [];
+}
+@endphp
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <style>
     table{
         border-radius: 10px 10px 10px 10px;
@@ -56,9 +76,7 @@
                                                     @endif</td>
                         <td id="p">{{$kr->Product->NAMA_PRODUK}}</td>
                         <td id="p" class="price1 ">{{$kr->Product->HARGA_PRODUK}}</td>
-
-                        <td id="p" ><input class="count1 p" type="number" min="0" id="jumlah_barang_{{$kr->ITEM_ID}}" value="{{$kr->JUMLAH}}" onchange="updateJumlah({{$kr->ITEM_ID}})" ></td>
-
+                        <td id="p" ><input class="count1 p" type="number" id="jumlah_barang_{{$kr->ITEM_ID}}" min="1" value="{{$kr->JUMLAH}}" onchange="updateJumlah({{$kr->ITEM_ID}})" ></td>
                     </tr>
                     @endforeach
                     <tr>
@@ -98,11 +116,9 @@ Pesan Sekarang
             <div class="col-12">
               <div class="rounded h-100 p-4">
                 <!-- input pertama -->
-                <div>
-                
-                </div>
+               
                 <div class="form-floating mb-3">
-  <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="total" id="totalHarga3" placeholder="name@example.com">
+  <input type="text" class="form-control" name="total" id="totalHarga3" placeholder="name@example.com" readonly>
   <label for="floatingInput">Total Harga</label>
 </div>
                 <div class="form-floating mb-3">

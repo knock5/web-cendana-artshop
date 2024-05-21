@@ -7,7 +7,7 @@ use App\Models\keranjang;
 use App\Models\pembayaran;
 use App\Models\pemesanan;
 use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert;
+
 class pembayaranController extends Controller
 {
     //
@@ -41,7 +41,7 @@ class pembayaranController extends Controller
         $pembayaran->METODE_PEMBAYARAN = $request->metode;
         $pembayaran->USER_ID = $user_id;
         $pembayaran->save();
-        Alert::success('Berhasil!', 'Pembayaran Berhasil Dilakukan');
-        return back();
+        // Alert::success('Berhasil!', 'Pembayaran Berhasil Dilakukan');
+        return back()->with('Berhasil!', 'Pembayaran Berhasil Dilakukan');
     }
 }

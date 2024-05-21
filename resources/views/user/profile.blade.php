@@ -1,7 +1,7 @@
 @extends('user.template.appuser')
 
 @section('title', 'Halaman Profile')
-@section('image', asset('user/images/2.png'))
+@section('image', asset('user/images/4.png'))
 @section('body', 'sub_page')
 
 @section('content')

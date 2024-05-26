@@ -1,6 +1,27 @@
 @extends('admin.template.appadmin')
 @section('title', 'Tambah Data Produk')
 @section('content')
+<style>
+/* Menghilangkan spinner di input number untuk WebKit (Chrome, Safari, Edge) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Menghilangkan spinner di input number untuk Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Menghilangkan spinner di input number untuk Internet Explorer */
+input[type=number]::-ms-clear,
+input[type=number]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+}
+</style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <a href="{{url('produk')}}" class="btn btn-primary ml-md-3"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
@@ -43,7 +64,7 @@
                 @enderror    
             </div>
                 <div class="form-floating mb-3">
-                <input type="text" name="harga" class="form-control @error('harga') is-invalid @enderror" id="floatingInput" value="{{$pr->HARGA_PRODUK}}" placeholder="name@example.com">
+                <input type="number" name="harga" class="form-control @error('harga') is-invalid @enderror" id="floatingInput" value="{{$pr->HARGA_PRODUK}}" placeholder="name@example.com">
                 <label for="floatingInput">Harga Barang</label>
                 @error('harga')
                 <div class="invalid-feedback">{{$message}}</div>

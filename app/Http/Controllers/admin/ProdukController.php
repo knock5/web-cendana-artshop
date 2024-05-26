@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProdukController extends Controller
 {
@@ -72,7 +73,7 @@ class ProdukController extends Controller
             $produk->GAMBAR_PRODUK = $fileName;
         }
         $produk->save();
-        // Alert::success('Berhasil!', 'Data Produk berhasil ditambahkan');
+        Alert::success('Berhasil!', 'Data Produk berhasil ditambahkan');
         return redirect('/produk')->with('Berhasil!', 'Data Produk berhasil ditambahkan');
         
 
@@ -129,14 +130,14 @@ class ProdukController extends Controller
             $produk->GAMBAR_PRODUK = $fileName;
         }
         $produk->save();
-        // Alert::success('Berhasil!', 'Data Produk berhasil di edit');
+        Alert::success('Berhasil!', 'Data Produk berhasil di edit');
         return redirect('/produk')->with('Berhasil!', 'Data Produk berhasil di edit');
 
     }
     public function delete(String $id)
     {
         product::find($id)->delete();
-      
+        Alert::success('Berhasil!', 'Data Produk berhasil di hapus');
         return redirect('/produk')->with('Berhasil!', 'Data Produk berhasil dihapus');
     }
 }

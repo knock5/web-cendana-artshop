@@ -11,13 +11,17 @@
             <div class="container ">
               <div class="row">
                 <div class="col-md-7 col-lg-6 ">
-                  <div class="detail-box">
+                  <div class="detail-box" >
+                  <div style="background-color: rgba(0, 0, 0, 0.6); padding: 15px; border-radius: 10px">
+
+                
                     <h1>
                     Lukisan: Cerminan Kreativitas
                     </h1>
                     <p>
                     Sambutlah Kekuatan Warna dan Sentuhan yang Membawa Keajaiban dengan Koleksi Seni Asli Kami.
                     </p>
+                    </div>
                     <div class="btn-box">
                       <a href="{{url('cart')}}" class="btn1">
                         Pesan Sekarang
@@ -32,13 +36,15 @@
             <div class="container ">
               <div class="row">
                 <div class="col-md-7 col-lg-6 ">
-                  <div class="detail-box">
+                  <div class="detail-box" >
+                  <div style="background-color: rgba(0, 0, 0, 0.6); padding: 15px; border-radius: 10px">
                     <h1>
                     Kecantikan Abadi
                     </h1>
                     <p >
                     Temukan Karya Seni yang Membangkitkan Perasaan, Menjadi Pusat Perhatian, dan Menyinari Ruang Anda.
                     </p>
+                  </div>
                     <div class="btn-box">
                     <a href="{{url('cart')}}" class="btn1">
                         Pesan Sekarang
@@ -54,12 +60,14 @@
               <div class="row">
                 <div class="col-md-7 col-lg-6 ">
                   <div class="detail-box">
+                  <div style="background-color: rgba(0, 0, 0, 0.6); padding: 15px; border-radius: 10px">
                     <h1>
                     Karya yang Memikat
                     </h1>
                     <p>
                     Dari Kanvas ke Dinding Anda: Dapatkan Koleksi Lukisan Berkualitas Tinggi, Dibuat dengan Cinta dan Kecantikan yang Abadi.
                     </p>
+                  </div>
                     <div class="btn-box">
                     <a href="{{url('cart')}}" class="btn1">
                         Pesan Sekarang

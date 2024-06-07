@@ -1,6 +1,7 @@
 @extends('admin.template.appadmin')
 @section('title', 'Data Laporan')
 @section('content')
+@section('laporan', 'active')
 
 <style>
     #p{

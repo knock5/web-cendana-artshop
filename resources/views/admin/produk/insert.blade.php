@@ -1,6 +1,8 @@
 @extends('admin.template.appadmin')
 @section('title', 'Tambah Data Produk')
+@section('data', 'active')
 @section('content')
+
 <style>
 /* Menghilangkan spinner di input number untuk WebKit (Chrome, Safari, Edge) */
 input[type=number]::-webkit-inner-spin-button,

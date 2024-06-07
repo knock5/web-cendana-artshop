@@ -1,5 +1,6 @@
 @extends('admin.template.appadmin')
 @section('title', 'Data Produk')
+@section('data', 'active')
 @section('content')
 
 <div class="card shadow mb-4">

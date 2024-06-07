@@ -170,6 +170,8 @@ Pesan Sekarang
             success: function(response) {
                 // Handle jika permintaan berhasil
                 console.log(response);
+                // Update total harga
+                hitungTotalHarga();
             },
             error: function(xhr) {
                 // Handle jika terjadi kesalahan
@@ -178,27 +180,23 @@ Pesan Sekarang
         });
     }
     
-            // Set nilai total harga ke dalam elemen HTML
-            
-    const prices1 = document.querySelectorAll('.price1');
-    const counts1 = document.querySelectorAll('.count1');
-
-    let totalHarga1 = 0;
-   
-    
-    // Loop melalui setiap elemen dan tambahkan harga produk yang dihitung dengan jumlahnya ke total harga
-    for (let i = 0; i < prices1.length; i++) {
-        const harga1 = parseInt(prices1[i].innerText.replace('Rp.', '').replace('.', '').trim());
-        const jumlahText1 = counts1[i].value;
-        // const jumlah = parseInt(counts[i].value.replace('Jumlah :', '').trim()); 
-        totalHarga1 += harga1 * jumlahText1;
+    function hitungTotalHarga() {
+        const prices1 = document.querySelectorAll('.price1');
+        const counts1 = document.querySelectorAll('.count1');
+        let totalHarga1 = 0;
         
+        for (let i = 0; i < prices1.length; i++) {
+            const harga1 = parseInt(prices1[i].innerText.replace(/\./g, '').trim());
+            const jumlahText1 = counts1[i].value;
+            totalHarga1 += harga1 * jumlahText1;
+        }
+
+        document.getElementById("totalHarga2").innerText = "Rp." + totalHarga1.toLocaleString('id-ID');
+        document.getElementById("totalHarga3").value = totalHarga1;
     }
 
-    // Set nilai total harga ke dalam elemen HTML
-    document.getElementById("totalHarga2").innerText = "Rp." + totalHarga1.toLocaleString();
-    document.getElementById("totalHarga3").value =  totalHarga1;
-  
+    // Hitung total harga saat halaman pertama kali dimuat
+    document.addEventListener('DOMContentLoaded', hitungTotalHarga);
     
 </script>
 

@@ -1,5 +1,6 @@
 @extends('admin.template.appadmin')
 @section('title', 'Dashboard')
+@section('dashboard', 'active')
 @section('content')
 
 <div class="row">
